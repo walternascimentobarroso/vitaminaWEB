@@ -7,7 +7,7 @@ use App\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UserTest extends TestCase
+class MeTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -19,7 +19,7 @@ class UserTest extends TestCase
 
         // Send a GET request to the /user route with the JWT token in the Authorization header
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
-            ->get('/api/user');
+            ->get('/api/me');
 
         // Assert that the response status code is 200 (success)
         $response->assertStatus(200);
@@ -35,7 +35,7 @@ class UserTest extends TestCase
     public function testGetUserUnauthenticated()
     {
         // Send a GET request to the /api/user route without authentication
-        $response = $this->getJson('/api/user');
+        $response = $this->getJson('/api/me');
 
         // Assert that the response status code is 401 (unauthorized)
         $response->assertStatus(401);
