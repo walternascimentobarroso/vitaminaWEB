@@ -50,7 +50,7 @@ class ProductTest extends TestCase
         $token = $this->getAuthToken();
 
         $data = [
-            'description' => $this->faker->text(100)
+            'description' => $this->faker->word
         ];
 
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->postJson($this->route, $data);
@@ -84,7 +84,7 @@ class ProductTest extends TestCase
     public function testCreateProductUnauthenticated()
     {
         $data = [
-            'description' => $this->faker->text(100)
+            'description' => $this->faker->word
         ];
 
         $response = $this->postJson($this->route, $data);
@@ -133,7 +133,7 @@ class ProductTest extends TestCase
         $data = Product::factory()->create();
 
         $updatedData = [
-            'description' => $this->faker->text(100)
+            'description' => $this->faker->word
         ];
 
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->putJson("$this->route/$data->id", $updatedData);
@@ -157,7 +157,7 @@ class ProductTest extends TestCase
         $token = $this->getAuthToken();
 
         $updatedData = [
-            'description' => $this->faker->text(100),
+            'description' => $this->faker->word,
         ];
 
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->putJson("$this->route/123", $updatedData);

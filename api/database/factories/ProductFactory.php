@@ -20,7 +20,7 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'description' => $this->faker->text,
+            'description' => $this->faker->word,
         ];
     }
 }
