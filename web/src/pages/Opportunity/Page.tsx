@@ -28,7 +28,7 @@ export default () => {
     };
     setList([...list, toastProperties]);
   };
-  const [data, setData] = useState([]);
+  const [data, setData]:any = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -40,7 +40,7 @@ export default () => {
           },
         });
 
-        const formatData = response.data.data.map(data => ({
+        const formatData = response.data.data.map((data:any) => ({
           id: data.id,
           status: data.status,
         }));
@@ -97,9 +97,9 @@ export default () => {
   };
 
   const editRegister = (newRow: any) => {
-    setData(data.map((row) => (row.id !== newRow.id ? row : newRow)));
+    setData(data.map((row:any) => (row.id !== newRow.id ? row : newRow)));
     setFilteredData(
-      filteredData.map((row) => (row.id !== newRow.id ? row : newRow))
+      filteredData.map((row:any) => (row.id !== newRow.id ? row : newRow))
     );
 
     showToast("success", "Edited", "Edit with success");
@@ -113,7 +113,7 @@ export default () => {
 
   const [filteredData, setFilteredData] = useState(data);
   const filterData = ({ target }: any) => {
-    const filteredData = data.filter((item) =>
+    const filteredData = data.filter((item:any) =>
       item.status.toLowerCase().includes(target.value.toLowerCase())
     );
     setFilteredData(filteredData);
@@ -128,13 +128,13 @@ export default () => {
             href: "/home",
           },
           {
-            label: "Products",
+            label: "Opportunities",
             href: "",
           },
         ]}
       />
 
-      <Title>Products</Title>
+      <Title>Opportunities</Title>
       {loading && <Spinner />}
       <Toast toasties={list} position="top-right" setList={setList} />
 

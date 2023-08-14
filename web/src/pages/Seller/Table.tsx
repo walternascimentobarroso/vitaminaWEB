@@ -10,7 +10,7 @@ export default ({ data, deleteRow, editRow, openFormModal }: any) => {
     description: "",
   });
 
-  const tHeads = ["#", "Description", "Actions"];
+  const tHeads = ["#", "Name", "Actions"];
 
   const action = (record: any) => (
     <>
@@ -30,7 +30,7 @@ export default ({ data, deleteRow, editRow, openFormModal }: any) => {
           openModal();
           setDeleteInfo({
             id: record.id,
-            description: record.description,
+            description: record.name,
           });
         }}
       >
@@ -42,7 +42,7 @@ export default ({ data, deleteRow, editRow, openFormModal }: any) => {
   return (
     <>
       <Table
-        caption="List of Products"
+        caption="List of Sellers"
         tHeads={tHeads}
         data={data}
         action={action}

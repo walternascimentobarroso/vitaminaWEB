@@ -29,7 +29,7 @@ export default () => {
     };
     setList([...list, toastProperties]);
   };
-  const [data, setData] = useState([]);
+  const [data, setData]:any = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -41,7 +41,7 @@ export default () => {
           },
         });
 
-        const formatData = response.data.data.map(data => ({
+        const formatData = response.data.data.map((data:any) => ({
           id: data.id,
           description: data.description,
         }));
@@ -98,9 +98,9 @@ export default () => {
   };
 
   const editRegister = (newRow: any) => {
-    setData(data.map((row) => (row.id !== newRow.id ? row : newRow)));
+    setData(data.map((row:any) => (row.id !== newRow.id ? row : newRow)));
     setFilteredData(
-      filteredData.map((row) => (row.id !== newRow.id ? row : newRow))
+      filteredData.map((row:any) => (row.id !== newRow.id ? row : newRow))
     );
 
     showToast("success", "Edited", "Edit with success");
@@ -114,7 +114,7 @@ export default () => {
 
   const [filteredData, setFilteredData] = useState(data);
   const filterData = ({ target }: any) => {
-    const filteredData = data.filter((item) =>
+    const filteredData = data.filter((item:any) =>
       item.description.toLowerCase().includes(target.value.toLowerCase())
     );
     setFilteredData(filteredData);

@@ -128,13 +128,13 @@ export default () => {
             href: "/home",
           },
           {
-            label: "Products",
+            label: "Customers",
             href: "",
           },
         ]}
       />
 
-      <Title>Products</Title>
+      <Title>Customers</Title>
       {loading && <Spinner />}
       <Toast toasties={list} position="top-right" setList={setList} />
 
