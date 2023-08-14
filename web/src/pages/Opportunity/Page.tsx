@@ -70,8 +70,14 @@ export default () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const updatedEditData = {
+        ...response.data.data,
+        seller_id: response.data.data.seller.id,
+        customer_id: response.data.data.customer.id,
+        product_id: response.data.data.product.id,
+      };
 
-      setRowToEdit(response.data.data);
+      setRowToEdit(updatedEditData);
     } catch (error) {
       console.error("Erro ao buscar usuários:", error);
     }
@@ -189,7 +195,7 @@ export default () => {
       <Card className="p-0">
         <div className="flex justify-between bg-white p-4 border-b dark:bg-gray-800 dark:border-gray-700 rounded-t-lg">
           <SearchButton
-            placeholder="Search for description"
+            placeholder="Search for status"
             onChange={filterData}
           />
 
