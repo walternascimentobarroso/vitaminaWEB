@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 interface AuthContextData {
   user: User | null;
@@ -33,10 +34,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
-  const signIn = (email: string, password: string) => {
-    localStorage.setItem("user_token", JSON.stringify({ email, password }));
-    setUser({ email, password });
-    return;
+  const signIn = async (email: string, password: string) => {
+    try {
+      const response = await axios.post("http://127.0.0.1/api/login", {
+        email,
+        password,
+      });
+      const userData = response.data;
+      localStorage.setItem("user_token", userData.token);
+      setUser(userData);
+      return true;
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      return "Erro ao fazer login:";
+    }
   };
 
   const signUp = (email: string, password: string) => {

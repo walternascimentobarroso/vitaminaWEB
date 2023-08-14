@@ -22,13 +22,17 @@ export default () => {
   const handleChange = (e: any) =>
     setFormState({ ...formState, [e.target.name]: e.target.value });
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!formState.email || !formState.password) {
       setError("Fill all fields");
       return;
     }
 
-    const res: any = signIn(formState.email, formState.password);
+    const res: any = await signIn(formState.email, formState.password);
+    if(!res) {
+      setError("Error");
+      return;
+    }
 
     if (res) {
       setError(res);
