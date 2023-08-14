@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OpportunityController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/me', 'me')->middleware('auth');
@@ -18,4 +19,5 @@ Route::middleware(['auth'])->group(function () {
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('sellers', SellerController::class);
     Route::apiResource('products', ProductController::class);
+    Route::apiResource('opportunities', OpportunityController::class);
 });
