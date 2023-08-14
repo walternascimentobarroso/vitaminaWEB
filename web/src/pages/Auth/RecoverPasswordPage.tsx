@@ -16,7 +16,6 @@ export default () => {
     <TemplateAuth
       image="https://source.unsplash.com/Mv9hjnEUHR4/600x800"
       title="Recover Password!"
-      showLoginSocial={false}
     >
       <form className="px-8 pt-6 pb-8 mb-4">
         <Input
