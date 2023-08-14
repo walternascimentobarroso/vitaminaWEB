@@ -67,7 +67,6 @@ export default () => {
       });
 
       setRowToEdit(response.data.data);
-
     } catch (error) {
       console.error("Erro ao buscar usuários:", error);
     }
@@ -107,10 +106,22 @@ export default () => {
     }, 1000);
   };
 
-  const editRegister = (newRow: any) => {
-    setData(data.map((row: any) => (row.id !== newRow.id ? row : newRow)));
+  const editRegister = async (newRow: any) => {
+    const token = localStorage.getItem("user_token");
+    const response = await axios.put(`${router}/${newRow.id}`, newRow, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const newData = {
+      id: response.data.data.id,
+      name: response.data.data.name,
+    };
+
+    setData(data.map((row: any) => (row.id !== newData.id ? row : newData)));
     setFilteredData(
-      filteredData.map((row: any) => (row.id !== newRow.id ? row : newRow))
+      filteredData.map((row: any) => (row.id !== newData.id ? row : newData))
     );
 
     showToast("success", "Edited", "Edit with success");
