@@ -15,6 +15,8 @@ import Spinner from "../../components/Spinner";
 import axios from 'axios';
 
 export default () => {
+  const router = "http://127.0.0.1/api/products";
+
   const { openModal, closeModal, ModalWrapper } = useModal();
   const [list, setList]: any = useState([]);
   const [loading, setLoading]: any = useState(false);
@@ -33,7 +35,7 @@ export default () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('user_token');
-        const response = await axios.get('http://127.0.0.1/api/products', {
+        const response = await axios.get(router, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,7 +68,7 @@ export default () => {
   
     try {
       const token = localStorage.getItem('user_token');
-      await axios.delete(`http://127.0.0.1/api/products/${targetIndex}`, {
+      await axios.delete(`${router}/${targetIndex}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

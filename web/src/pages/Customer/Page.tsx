@@ -15,6 +15,7 @@ import Spinner from "../../components/Spinner";
 import axios from 'axios';
 
 export default () => {
+  const router = "http://127.0.0.1/api/customers";
   const { openModal, closeModal, ModalWrapper } = useModal();
   const [list, setList]: any = useState([]);
   const [loading, setLoading]: any = useState(false);
@@ -27,21 +28,21 @@ export default () => {
     };
     setList([...list, toastProperties]);
   };
-  const [data, setData] = useState([]);
+  const [data, setData]:any = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('user_token');
-        const response = await axios.get('http://127.0.0.1/api/products', {
+        const response = await axios.get(router, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        const formatData = response.data.data.map(data => ({
+        const formatData = response.data.data.map((data: any) => ({
           id: data.id,
-          description: data.description,
+          name: data.name,
         }));
   
         setData(formatData);
@@ -66,7 +67,7 @@ export default () => {
   
     try {
       const token = localStorage.getItem('user_token');
-      await axios.delete(`http://127.0.0.1/api/products/${targetIndex}`, {
+      await axios.delete(`${router}/${targetIndex}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -96,9 +97,9 @@ export default () => {
   };
 
   const editRegister = (newRow: any) => {
-    setData(data.map((row) => (row.id !== newRow.id ? row : newRow)));
+    setData(data.map((row:any) => (row.id !== newRow.id ? row : newRow)));
     setFilteredData(
-      filteredData.map((row) => (row.id !== newRow.id ? row : newRow))
+      filteredData.map((row:any) => (row.id !== newRow.id ? row : newRow))
     );
 
     showToast("success", "Edited", "Edit with success");
@@ -112,8 +113,8 @@ export default () => {
 
   const [filteredData, setFilteredData] = useState(data);
   const filterData = ({ target }: any) => {
-    const filteredData = data.filter((item) =>
-      item.description.toLowerCase().includes(target.value.toLowerCase())
+    const filteredData = data.filter((item:any ) =>
+      item.name.toLowerCase().includes(target.value.toLowerCase())
     );
     setFilteredData(filteredData);
   };
