@@ -6,6 +6,7 @@ import UserPage from "./pages/User/Page";
 import ProductPage from "./pages/Product/Page";
 import CustomerPage from "./pages/Customer/Page";
 import SellerPage from "./pages/Seller/Page";
+import OpportunityPage from "./pages/Opportunity/Page";
 import HomePage from "./pages/Home/Page";
 import ProfilePage from "./pages/Profile/Page";
 import Error404Page from "./pages/Error/404Page";
@@ -55,6 +56,11 @@ const routes: any[] = [
     path: "/seller",
     exact: true,
     element: <Private Item={SellerPage} />,
+  },
+  {
+    path: "/opportunity",
+    exact: true,
+    element: <Private Item={OpportunityPage} />,
   },
   {
     path: "/faq",
