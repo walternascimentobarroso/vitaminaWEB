@@ -1,0 +1,8 @@
+{
+  // Auto format when save file
+  "editor.formatOnSave": true,
+  // Indentação
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Check Language for all files
+  "cSpell.languageSettings": []
+}

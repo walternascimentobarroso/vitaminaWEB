@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom--bg {
+  @apply bg-white text-gray-700 border-gray-200 
+          dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700;
+}
+
+.custom--link {
+  @apply text-gray-900 font-semibold
+          dark:text-gray-200 
+          hover:text-gray-900 hover:bg-gray-200
+          focus:text-gray-900 focus:bg-gray-200 focus:outline-none
+          dark:hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white
+          dark:focus:text-white dark:focus:bg-gray-600 dark:focus:text-white;
+}
+
+.custom--svg {
+  @apply text-gray-500 group-hover:text-gray-900 transition duration-75;
+}
+
+.custom--badge {
+  @apply bg-gray-200 text-gray-800 ml-3 text-sm font-medium inline-flex items-center justify-center px-2 rounded-full;
+}
+
+.custom--btn {
+  @apply hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white font-bold py-2 px-4 rounded;
+}
+
+.custom--btn-primary {
+  @apply bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.custom--btn-secondary {
+  @apply bg-gray-500 dark:bg-gray-800 dark:hover:bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.custom--btn-success {
+  @apply bg-green-500 dark:bg-green-800 dark:hover:bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.custom--btn-danger {
+  @apply bg-red-500 dark:bg-red-800 dark:hover:bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.custom--btn-info {
+  @apply bg-indigo-500 dark:bg-indigo-800 dark:hover:bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.custom--btn-warning {
+  @apply bg-yellow-500 dark:bg-yellow-800 dark:hover:bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded;
+}
