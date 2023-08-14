@@ -105,9 +105,22 @@ export default () => {
     showToast("success", "Edited", "Edit with success");
   };
 
-  const newRegister = (newRow: any) => {
-    setData([...data, newRow]);
-    setFilteredData([...filteredData, newRow]);
+  const newRegister = async (newRow: any) => {
+
+    const token = localStorage.getItem('user_token');
+    const response = await axios.post(router, newRow, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const newData = {
+      id: response.data.data.id,
+      status: response.data.data.status,
+    };
+
+    setData([...data, newData]);
+    setFilteredData([...filteredData, newData]);
     showToast("success", "Registered", "Register with success");
   };
 

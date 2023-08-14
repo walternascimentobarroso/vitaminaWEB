@@ -7,7 +7,7 @@ export default ({ onActionSubmit, defaultValue = {}, closeModal }: any) => {
   const [errors, setErrors] = useState("");
   const [formState, setFormState] = useState(
     defaultValue || {
-      description: "",
+      name: "",
     }
   );
 
@@ -47,10 +47,10 @@ export default ({ onActionSubmit, defaultValue = {}, closeModal }: any) => {
 
       <form className="p-1 bg-white dark:bg-gray-800">
         <Input
-          label={"Description"}
-          placeholder={"Description"}
-          name={"description"}
-          value={formState?.description || ""}
+          label={"Name"}
+          placeholder={"Name"}
+          name={"name"}
+          value={formState?.name || ""}
           onChange={handleChange}
         />
 

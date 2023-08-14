@@ -7,7 +7,11 @@ export default ({ onActionSubmit, defaultValue = {}, closeModal }: any) => {
   const [errors, setErrors] = useState("");
   const [formState, setFormState] = useState(
     defaultValue || {
-      description: "",
+      status: "",
+      due_date: "",
+      customer_id: "",
+      seller_id: "",
+      product_id: "",
     }
   );
 
@@ -47,10 +51,43 @@ export default ({ onActionSubmit, defaultValue = {}, closeModal }: any) => {
 
       <form className="p-1 bg-white dark:bg-gray-800">
         <Input
-          label={"Description"}
-          placeholder={"Description"}
-          name={"description"}
-          value={formState?.description || ""}
+          label={"Status"}
+          placeholder={"Status"}
+          name={"status"}
+          value={formState?.status || ""}
+          onChange={handleChange}
+        />
+
+        <Input
+          label={"Due Date"}
+          placeholder={"Due Date"}
+          name={"due_date"}
+          type={"date"}
+          value={formState?.due_date || ""}
+          onChange={handleChange}
+        />
+
+        <Input
+          label={"Customer ID"}
+          placeholder={"Customer ID"}
+          name={"customer_id"}
+          value={formState?.customer_id || ""}
+          onChange={handleChange}
+        />
+
+        <Input
+          label={"Seller ID"}
+          placeholder={"Seller ID"}
+          name={"seller_id"}
+          value={formState?.seller_id || ""}
+          onChange={handleChange}
+        />
+
+        <Input
+          label={"Product ID"}
+          placeholder={"Product ID"}
+          name={"product_id"}
+          value={formState?.product_id || ""}
           onChange={handleChange}
         />
 
