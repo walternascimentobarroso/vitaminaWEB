@@ -27,11 +27,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const userToken: any = localStorage.getItem("user_token");
 
-    if (userToken) {
-      const hasUser = JSON.parse(userToken);
+    // if (userToken) {
+    //   const hasUser = JSON.parse(userToken);
 
-      if (hasUser) setUser(hasUser);
-    }
+    //   if (hasUser) setUser(hasUser);
+    // }
   }, []);
 
   const signIn = async (email: string, password: string) => {
