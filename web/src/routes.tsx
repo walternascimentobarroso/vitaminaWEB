@@ -3,7 +3,7 @@ import useAuth from "./hooks/useAuth";
 // Normal Pages
 import FaqPage from "./pages/Faq/Page";
 import UserPage from "./pages/User/Page";
-import RolePage from "./pages/Role/Page";
+import ProductPage from "./pages/Product/Page";
 import HomePage from "./pages/Home/Page";
 import ProfilePage from "./pages/Profile/Page";
 import Error404Page from "./pages/Error/404Page";
@@ -40,9 +40,9 @@ const routes: any[] = [
     element: <Private Item={UserPage} />,
   },
   {
-    path: "/role",
+    path: "/product",
     exact: true,
-    element: <Private Item={RolePage} />,
+    element: <Private Item={ProductPage} />,
   },
   {
     path: "/faq",
