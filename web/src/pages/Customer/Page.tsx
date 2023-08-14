@@ -15,7 +15,8 @@ import Spinner from "../../components/Spinner";
 import axios from "axios";
 
 export default () => {
-  const router = "http://127.0.0.1/api/customers";
+  const baseRoute = import.meta.env.VITE_API_BASE_URL;
+  const router = `${baseRoute}/customers`;
   const { openModal, closeModal, ModalWrapper } = useModal();
   const [list, setList]: any = useState([]);
   const [loading, setLoading]: any = useState(false);
