@@ -11,7 +11,7 @@ Project test
 ## :dvd: Setup
 
 ```
-./vendor/bin/sail up
+./vendor/bin/sail up -d
 
 sail composer install
 
