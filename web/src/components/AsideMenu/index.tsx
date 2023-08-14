@@ -3,11 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import {
   MdGroup,
-  MdLockPerson,
   MdLogout,
   MdOutlineFilterVintage,
   MdOutlineQuestionMark,
   MdPieChart,
+  MdAttachMoney,
+  MdPlaylistAddCheck,
+  MdPersonSearch,
+  MdPerson4,
 } from "react-icons/md";
 
 interface MenuAsideProps {
@@ -40,22 +43,22 @@ export default ({ isMenuOpen }: MenuAsideProps) => {
     {
       href: "/product",
       title: "Products",
-      icon: <MdLockPerson className="w-6 h-6 custom--svg" />,
+      icon: <MdPlaylistAddCheck className="w-6 h-6 custom--svg" />,
     },
     {
       href: "/customer",
       title: "Customers",
-      icon: <MdLockPerson className="w-6 h-6 custom--svg" />,
+      icon: <MdPersonSearch className="w-6 h-6 custom--svg" />,
     },
     {
       href: "/seller",
       title: "Sellers",
-      icon: <MdLockPerson className="w-6 h-6 custom--svg" />,
+      icon: <MdPerson4 className="w-6 h-6 custom--svg" />,
     },
     {
       href: "/opportunity",
       title: "Opportunities",
-      icon: <MdLockPerson className="w-6 h-6 custom--svg" />,
+      icon: <MdAttachMoney className="w-6 h-6 custom--svg" />,
     },
   ];
 
