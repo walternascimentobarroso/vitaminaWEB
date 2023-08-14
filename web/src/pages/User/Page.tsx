@@ -177,7 +177,7 @@ export default () => {
       <Card className="p-0">
         <div className="flex justify-between bg-white p-4 border-b dark:bg-gray-800 dark:border-gray-700 rounded-t-lg">
           <SearchButton
-            placeholder="Search for description"
+            placeholder="Search for name"
             onChange={filterData}
           />
 
