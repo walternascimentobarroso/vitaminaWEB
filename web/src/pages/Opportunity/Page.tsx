@@ -12,7 +12,7 @@ import SearchButton from "../../components/SearchButton";
 import { useModal } from "../../hooks/useModal";
 import Spinner from "../../components/Spinner";
 
-import axios from 'axios';
+import axios from "axios";
 
 export default () => {
   const router = "http://127.0.0.1/api/opportunities";
@@ -28,58 +28,68 @@ export default () => {
     };
     setList([...list, toastProperties]);
   };
-  const [data, setData]:any = useState([]);
+  const [data, setData]: any = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const token = localStorage.getItem('user_token');
+        const token = localStorage.getItem("user_token");
         const response = await axios.get(router, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        const formatData = response.data.data.map((data:any) => ({
+        const formatData = response.data.data.map((data: any) => ({
           id: data.id,
           status: data.status,
         }));
-  
+
         setData(formatData);
         setFilteredData(formatData);
       } catch (error) {
-        console.error('Erro ao buscar usuários:', error);
+        console.error("Erro ao buscar usuários:", error);
       }
     };
-  
+
     fetchUsers();
   }, []);
 
   const [rowToEdit, setRowToEdit] = useState({});
 
-  const handleEditRow = (idx: any) => {
-    let row: any = data.find((row: any) => row.id === idx);
-    setRowToEdit(row);
+  const handleEditRow = async (idx: any) => {
+    try {
+      const token = localStorage.getItem("user_token");
+      const response = await axios.get(`${router}/${idx}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setRowToEdit(response.data.data);
+    } catch (error) {
+      console.error("Erro ao buscar usuários:", error);
+    }
   };
 
   const handleDeleteRow = async (targetIndex: any) => {
     setLoading(true);
-  
+
     try {
-      const token = localStorage.getItem('user_token');
+      const token = localStorage.getItem("user_token");
       await axios.delete(`${router}/${targetIndex}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       setData(data.filter((row: any) => row.id !== targetIndex));
       setFilteredData(
         filteredData.filter((row: any) => row.id !== targetIndex)
       );
       showToast("success", "Removed", "Removed with success");
     } catch (error) {
-      console.error('Error deleting row:', error);
+      console.error("Error deleting row:", error);
       showToast("error", "Error", "Error while deleting");
     } finally {
       setLoading(false);
@@ -97,17 +107,16 @@ export default () => {
   };
 
   const editRegister = (newRow: any) => {
-    setData(data.map((row:any) => (row.id !== newRow.id ? row : newRow)));
+    setData(data.map((row: any) => (row.id !== newRow.id ? row : newRow)));
     setFilteredData(
-      filteredData.map((row:any) => (row.id !== newRow.id ? row : newRow))
+      filteredData.map((row: any) => (row.id !== newRow.id ? row : newRow))
     );
 
     showToast("success", "Edited", "Edit with success");
   };
 
   const newRegister = async (newRow: any) => {
-
-    const token = localStorage.getItem('user_token');
+    const token = localStorage.getItem("user_token");
     const response = await axios.post(router, newRow, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -126,7 +135,7 @@ export default () => {
 
   const [filteredData, setFilteredData] = useState(data);
   const filterData = ({ target }: any) => {
-    const filteredData = data.filter((item:any) =>
+    const filteredData = data.filter((item: any) =>
       item.status.toLowerCase().includes(target.value.toLowerCase())
     );
     setFilteredData(filteredData);
