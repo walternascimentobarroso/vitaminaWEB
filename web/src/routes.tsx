@@ -4,6 +4,7 @@ import useAuth from "./hooks/useAuth";
 import FaqPage from "./pages/Faq/Page";
 import UserPage from "./pages/User/Page";
 import ProductPage from "./pages/Product/Page";
+import CustomerPage from "./pages/Customer/Page";
 import HomePage from "./pages/Home/Page";
 import ProfilePage from "./pages/Profile/Page";
 import Error404Page from "./pages/Error/404Page";
@@ -43,6 +44,11 @@ const routes: any[] = [
     path: "/product",
     exact: true,
     element: <Private Item={ProductPage} />,
+  },
+  {
+    path: "/customer",
+    exact: true,
+    element: <Private Item={CustomerPage} />,
   },
   {
     path: "/faq",
