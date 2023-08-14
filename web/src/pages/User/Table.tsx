@@ -16,8 +16,8 @@ export default ({ data, deleteRow, editRow, openFormModal }: any) => {
     <>
       <Button
         customClass="custom--btn-warning mr-4"
-        onClick={() => {
-          editRow(record.id);
+        onClick={async () => {
+          await editRow(record.id);
           openFormModal();
         }}
       >

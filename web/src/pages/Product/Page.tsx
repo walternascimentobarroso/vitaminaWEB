@@ -58,6 +58,7 @@ export default () => {
   const [rowToEdit, setRowToEdit] = useState({});
 
   const handleEditRow = async (idx: any) => {
+    setLoading(true);
     try {
       const token = localStorage.getItem("user_token");
       const response = await axios.get(`${router}/${idx}`, {
@@ -70,6 +71,7 @@ export default () => {
     } catch (error) {
       console.error("Erro ao buscar usuários:", error);
     }
+    setLoading(false);
   };
 
   const handleDeleteRow = async (targetIndex: any) => {
