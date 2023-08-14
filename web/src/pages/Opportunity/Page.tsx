@@ -43,6 +43,10 @@ export default () => {
         const formatData = response.data.data.map((data: any) => ({
           id: data.id,
           status: data.status,
+          due_date: data.due_date,
+          seller: data.seller.name,
+          customer: data.customer.name,
+          product: data.product.description,
         }));
 
         setData(formatData);
@@ -119,6 +123,10 @@ export default () => {
     const newData = {
       id: response.data.data.id,
       status: response.data.data.status,
+      due_date: response.data.data.due_date,
+      seller: response.data.data.seller.name,
+      customer: response.data.data.customer.name,
+      product: response.data.data.product.description,
     };
 
     setData(data.map((row: any) => (row.id !== newData.id ? row : newData)));
@@ -140,6 +148,10 @@ export default () => {
     const newData = {
       id: response.data.data.id,
       status: response.data.data.status,
+      due_date: response.data.data.due_date,
+      seller: response.data.data.seller.name,
+      customer: response.data.data.customer.name,
+      product: response.data.data.product.description,
     };
 
     setData([...data, newData]);

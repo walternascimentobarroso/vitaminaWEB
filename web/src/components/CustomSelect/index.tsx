@@ -11,6 +11,7 @@ interface SelectProps {
   label: string;
   options: SelectOption[];
   onSelect: (value: string) => void;
+  defaultValue: string;
 }
 
 const CustomSelect: React.FC<SelectProps> = ({
@@ -18,8 +19,9 @@ const CustomSelect: React.FC<SelectProps> = ({
   label,
   options,
   onSelect,
+  defaultValue,
 }) => {
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState(defaultValue || "");
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;

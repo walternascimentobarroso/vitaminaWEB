@@ -10,7 +10,7 @@ export default ({ data, deleteRow, editRow, openFormModal }: any) => {
     description: "",
   });
 
-  const tHeads = ["#", "Status", "Actions"];
+  const tHeads = ["#", "Status", "Due Date","Seller","Customer","Product", "Actions"];
 
   const action = (record: any) => (
     <>

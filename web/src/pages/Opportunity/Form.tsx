@@ -2,6 +2,7 @@ import { useState } from "react";
 import Alert from "../../components/Alert";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import CustomSelect from "../../components/CustomSelect";
 
 export default ({ onActionSubmit, defaultValue = {}, closeModal }: any) => {
   const [errors, setErrors] = useState("");
@@ -14,6 +15,16 @@ export default ({ onActionSubmit, defaultValue = {}, closeModal }: any) => {
       product_id: "",
     }
   );
+
+  const options = [
+    { value: "Open", label: "Open" },
+    { value: "Defeated", label: "Defeated" },
+    { value: "Lost", label: "Lost" },
+  ];
+
+  const handleSelect = (value: string) => {
+    setFormState({ ...formState, ['status']: value });
+  };
 
   const validateForm = () => {
     setErrors("");
@@ -50,12 +61,12 @@ export default ({ onActionSubmit, defaultValue = {}, closeModal }: any) => {
       )}
 
       <form className="p-1 bg-white dark:bg-gray-800">
-        <Input
-          label={"Status"}
-          placeholder={"Status"}
-          name={"status"}
-          value={formState?.status || ""}
-          onChange={handleChange}
+        <CustomSelect
+          label={"Role"}
+          name={"role"}
+          options={options}
+          onSelect={handleSelect}
+          defaultValue={formState?.status}
         />
 
         <Input
