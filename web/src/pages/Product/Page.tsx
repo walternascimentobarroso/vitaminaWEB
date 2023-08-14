@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./Form";
 import Table from "./Table";
 import Card from "../../components/Card";
@@ -11,6 +11,8 @@ import SearchButton from "../../components/SearchButton";
 
 import { useModal } from "../../hooks/useModal";
 import Spinner from "../../components/Spinner";
+
+import axios from 'axios';
 
 export default () => {
   const { openModal, closeModal, ModalWrapper } = useModal();
@@ -25,20 +27,32 @@ export default () => {
     };
     setList([...list, toastProperties]);
   };
-  const [data, setData] = useState([
-    {
-      id: 1,
-      description: "Admin",
-    },
-    {
-      id: 2,
-      description: "Manager",
-    },
-    {
-      id: 3,
-      description: "User",
-    },
-  ]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const token = localStorage.getItem('user_token');
+        const response = await axios.get('http://127.0.0.1/api/products', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const formatData = response.data.data.map(data => ({
+          id: data.id,
+          description: data.description,
+        }));
+  
+        setData(formatData);
+        setFilteredData(formatData);
+      } catch (error) {
+        console.error('Erro ao buscar usuários:', error);
+      }
+    };
+  
+    fetchUsers();
+  }, []);
 
   const [rowToEdit, setRowToEdit] = useState({});
 
@@ -47,16 +61,28 @@ export default () => {
     setRowToEdit(row);
   };
 
-  const handleDeleteRow = (targetIndex: any) => {
+  const handleDeleteRow = async (targetIndex: any) => {
     setLoading(true);
-    setTimeout(() => {
+  
+    try {
+      const token = localStorage.getItem('user_token');
+      await axios.delete(`http://127.0.0.1/api/products/${targetIndex}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
       setData(data.filter((row: any) => row.id !== targetIndex));
       setFilteredData(
         filteredData.filter((row: any) => row.id !== targetIndex)
       );
       showToast("success", "Removed", "Removed with success");
+    } catch (error) {
+      console.error('Error deleting row:', error);
+      showToast("error", "Error", "Error while deleting");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   const handleSubmit = (newRow: any) => {
@@ -101,13 +127,13 @@ export default () => {
             href: "/home",
           },
           {
-            label: "Roles",
+            label: "Products",
             href: "",
           },
         ]}
       />
 
-      <Title>Roles</Title>
+      <Title>Products</Title>
       {loading && <Spinner />}
       <Toast toasties={list} position="top-right" setList={setList} />
 
@@ -135,7 +161,7 @@ export default () => {
         />
       </Card>
 
-      <ModalWrapper title="Role">
+      <ModalWrapper title="Product">
         <Form
           onActionSubmit={handleSubmit}
           defaultValue={rowToEdit}

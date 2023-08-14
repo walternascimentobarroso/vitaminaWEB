@@ -38,8 +38,8 @@ export default ({ isMenuOpen }: MenuAsideProps) => {
       icon: <MdGroup className="w-6 h-6 custom--svg" />,
     },
     {
-      href: "/role",
-      title: "Roles",
+      href: "/product",
+      title: "Products",
       icon: <MdLockPerson className="w-6 h-6 custom--svg" />,
     },
   ];

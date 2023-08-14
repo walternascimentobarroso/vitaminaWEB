@@ -42,13 +42,13 @@ export default ({ data, deleteRow, editRow, openFormModal }: any) => {
   return (
     <>
       <Table
-        caption="List of Roles"
+        caption="List of Products"
         tHeads={tHeads}
         data={data}
         action={action}
       />
 
-      <ModalWrapper title="Delete Role">
+      <ModalWrapper title="Delete Product">
         <p>Are you sure you want remover?</p>
         <div className="my-4">
           <strong>{deleteInfo.description}</strong>
