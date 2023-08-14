@@ -47,6 +47,11 @@ export default ({ isMenuOpen }: MenuAsideProps) => {
       title: "Customers",
       icon: <MdLockPerson className="w-6 h-6 custom--svg" />,
     },
+    {
+      href: "/seller",
+      title: "Sellers",
+      icon: <MdLockPerson className="w-6 h-6 custom--svg" />,
+    },
   ];
 
   /**
